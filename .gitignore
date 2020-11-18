@@ -1,0 +1,15 @@
+Library/
+Assets/Editor/
+*.csproj
+*.sln
+*.suo
+*.unityproj
+**/.pidb
+*.sublime-*
+*.userprefs
+Assets/Gizmos.meta
+Assets/Editor Default Resources.meta
+Assembly-CSharp.csproj
+Temp
+.vs/
+obj/
