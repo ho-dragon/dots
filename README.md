@@ -3,4 +3,4 @@
 This project is for a stress test using Unity DOTS technology.
 
 ## Screenshot
-![dots](https://user-images.githubusercontent.com/15864013/99562845-ef233180-2a0b-11eb-904b-7d368637e064.png)
+![화면 캡처 2020-11-20 022216](https://user-images.githubusercontent.com/15864013/99700991-3aeedd00-2ad7-11eb-818a-96eab5ce6679.png)
