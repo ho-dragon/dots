@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
         this.onUpdateEnemyCount = onUpdateEnemyCount;
     }
 
-    public void Spawn(GameObject prefabEnemy)
+    public void Spawn(GameObject prefabEnemy, Transform target)
     {
         for (int i = 0; i < spawnCount; i++)
         {
@@ -31,7 +31,8 @@ public class EnemySpawner : MonoBehaviour
             float3 dir = math.mul(quaternion.RotateY(randomAngle), new float3(0, 0, 1));
             float3 spawnPos = dir * randomDistance;
             quaternion spawnRot = quaternion.LookRotationSafe(math.normalizesafe(-spawnPos), new float3(0f, 1f, 0f));
-            GameObject.Instantiate(prefabEnemy, spawnPos, spawnRot);    
+            var go = GameObject.Instantiate(prefabEnemy, spawnPos, spawnRot);
+            go.GetComponent<Enemy>().Init(target);
         }
         totalCount += spawnCount;
         this.onUpdateEnemyCount?.Invoke(totalCount);

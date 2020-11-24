@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Spawner.Spawn(EnemyPrefab);
+            Spawner.Spawn(EnemyPrefab, Player);
         }
     }
 }

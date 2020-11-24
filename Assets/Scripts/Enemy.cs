@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform Target;
+    Transform Target;
     private bool isExistTarget;
+    float speed = 0.1f;
 
     public void Init(Transform target)
     {
@@ -19,6 +21,7 @@ public class Enemy : MonoBehaviour
         if (isExistTarget)
         {
             this.transform.LookAt(Target);
+            transform.position = Vector3.Lerp(this.transform.position, Target.position, Time.deltaTime * speed);
         }
     }
 }
