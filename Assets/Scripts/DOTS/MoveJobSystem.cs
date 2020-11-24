@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
+[DisableAutoCreation]
 public class MoveJobSystem : JobComponentSystem
 {
     Vector3 targetPosition;
@@ -15,11 +16,11 @@ public class MoveJobSystem : JobComponentSystem
         targetPosition = target;
     }
     
-    struct MoveJob : IJobForEach<PrefabEntityComponent, Translation>
+    struct MoveJob : IJobForEach<EnemyEntity, Translation>
     {
         public float3 target;
         public float speed;
-        public void Execute([ReadOnly] ref PrefabEntityComponent entity, [WriteOnly]ref Translation translation)
+        public void Execute([ReadOnly] ref EnemyEntity entity, ref Translation translation)
         {
             translation.Value = Vector3.Lerp(translation.Value, target, speed);
         }
