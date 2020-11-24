@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boost: 3.5
-  positionLerpTime: 0.2
+  positionLerpTime: 0.198
   mouseSensitivityCurve:
     serializedVersion: 2
     m_Curve:
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e76c8376b98594d8336d62a56ab921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabEntity: {fileID: 4105507313101073231, guid: de1c1a8fa128f3c48a5d08b37bd4da12,
+  prefabEntity: {fileID: 1147752367711628, guid: 08c93d586dea3a54b833fc95a891dbce,
     type: 3}
 --- !u!4 &1047267535
 Transform:
@@ -678,6 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCount: 1000
+  spawnRadiusMinMax: {x: 40, y: 100}
 --- !u!4 &1270871978
 Transform:
   m_ObjectHideFlags: 0

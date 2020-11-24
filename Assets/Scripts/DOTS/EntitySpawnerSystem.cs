@@ -5,6 +5,7 @@ using Unity.Transforms;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
+[DisableAutoCreation]
 public class EntitySpawnerSystem : ComponentSystem
 {
     Random random;
