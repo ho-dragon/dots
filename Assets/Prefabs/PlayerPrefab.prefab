@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 95340733316770424}
   - component: {fileID: 143350241100547368}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,9 +518,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 505c96eabcd296e43821bac7d26e6315, type: 2}
-  - {fileID: 2100000, guid: 6169d43b5230c1448943d69d7eb8a5a3, type: 2}
-  - {fileID: 2100000, guid: b1166e1ca4f532e44b8e6b7e7397783c, type: 2}
+  - {fileID: 2100000, guid: bd5105e1f39844b4daded70961d0174f, type: 2}
+  - {fileID: 2100000, guid: 06eb4e637b7ef614e9265f48c542664b, type: 2}
+  - {fileID: 2100000, guid: d2c8f925eb40c4748811efdd803f25c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

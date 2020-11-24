@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using Unity.Entities;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class GameController : SingletonMonoBehaviour<GameController>
 {
-    public Transform Player;
-    public GameObject EnemyPrefab;
-    public EnemySpawner Spawner;
-    // Update is called once per frame
+    public int spawnCount = 1000;
+    public Vector2 spawnRadiusMinMax = new Vector2(15f, 60f);
+    Action<int, Vector2> onSpawn;
+    public void AddEventSpawn(Action<int, Vector2> onSpawn)
+    {
+        this.onSpawn = onSpawn;
+    }
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Spawner.Spawn(EnemyPrefab);
+            this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax);
         }
     }
 }

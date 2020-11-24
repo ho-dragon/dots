@@ -5,17 +5,11 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class UIEnemyCounter : MonoBehaviour
+public class UIEnemyCounter : SingletonMonoBehaviour<UIEnemyCounter>
 {
     public Text text;
-    public EnemySpawner spawner;
-    
-    void Start()
-    {
-        spawner.AddLinstener(OnUpdateEnemyCounter);
-    }
 
-    void OnUpdateEnemyCounter(int count)
+    public void UpdateEnemyCounter(int count)
     {
         text.text = string.Format("Enemy Count : {0}", count);
     }
