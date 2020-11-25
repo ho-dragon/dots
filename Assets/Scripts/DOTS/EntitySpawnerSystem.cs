@@ -19,7 +19,7 @@ public class EntitySpawnerSystem : ComponentSystem
         GameController.Instance.AddEventSpawn(Spawn);
     }
 
-    public void Spawn(int spawnCount, Vector2 spawnRadiusMinMax)
+    public void Spawn(int spawnCount, Vector2 spawnRadiusMinMax, Vector3 targetPos)
     {
         Entities.ForEach((ref PrefabEntityComponent prefabEntityComponent) =>
         {
@@ -30,12 +30,16 @@ public class EntitySpawnerSystem : ComponentSystem
                 float3 dir = math.mul(quaternion.RotateY(randomAngle), new float3(0, 0, 1));
                 float3 spawnPos = dir * randomDistance;
                 quaternion spawnRot = quaternion.LookRotationSafe(math.normalizesafe(-spawnPos), new float3(0f, 1f, 0f));
-                
                 Entity spawnedEntity = EntityManager.Instantiate(prefabEntityComponent.prefabEntity);
                 EntityManager.SetComponentData(spawnedEntity,
                     new Translation()
                     {
                         Value = spawnPos
+                    });
+                EntityManager.SetComponentData(spawnedEntity,
+                    new Rotation()
+                    {
+                        Value = spawnRot
                     });
             }
         });

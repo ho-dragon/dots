@@ -6,8 +6,8 @@ public class GameController : SingletonMonoBehaviour<GameController>
 {
     public int spawnCount = 1000;
     public Vector2 spawnRadiusMinMax = new Vector2(15f, 60f);
-    Action<int, Vector2> onSpawn;
-    
+    public Transform playerTransform;
+    Action<int, Vector2, Vector3> onSpawn;
     ComponentSystemGroup systemGroup;
     EntitySpawnerSystem spawnerSystem;
     MoveJobSystem moveJobSystem;
@@ -18,18 +18,19 @@ public class GameController : SingletonMonoBehaviour<GameController>
         systemGroup.AddSystemToUpdateList(spawnerSystem);
     }
     
-    public void AddEventSpawn(Action<int, Vector2> onSpawn)
+    public void AddEventSpawn(Action<int, Vector2, Vector3> onSpawn)
     {
         this.onSpawn = onSpawn;
     }
     
     public void OnClickSpawnEnemy()
     {
-        this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax);
+        this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax, playerTransform.position);
+        
         if (moveJobSystem == null)
         {
             moveJobSystem = World.DefaultGameObjectInjectionWorld.CreateSystem<MoveJobSystem>();
-            moveJobSystem.Init(new Vector3(0,0,0));
+            moveJobSystem.Init(playerTransform.position);
             systemGroup.AddSystemToUpdateList(moveJobSystem);
         }   
     }
