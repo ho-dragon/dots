@@ -14,13 +14,13 @@ public class Enemy : MonoBehaviour
     {
         Target = target;
         isExistTarget = true;
+        this.transform.LookAt(Target);
     }
     
     void Update()
     {
         if (isExistTarget)
         {
-            this.transform.LookAt(Target);
             transform.position = Vector3.Lerp(this.transform.position, Target.position, Time.deltaTime * speed);
         }
     }
