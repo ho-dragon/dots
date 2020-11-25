@@ -22,18 +22,15 @@ public class GameController : SingletonMonoBehaviour<GameController>
     {
         this.onSpawn = onSpawn;
     }
-
-    void Update()
+    
+    public void OnClickSpawnEnemy()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax);
+        if (moveJobSystem == null)
         {
-            this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax);
-            if (moveJobSystem == null)
-            {
-                moveJobSystem = World.DefaultGameObjectInjectionWorld.CreateSystem<MoveJobSystem>();
-                moveJobSystem.Init(new Vector3(0,0,0));
-                systemGroup.AddSystemToUpdateList(moveJobSystem);
-            }
-        }
+            moveJobSystem = World.DefaultGameObjectInjectionWorld.CreateSystem<MoveJobSystem>();
+            moveJobSystem.Init(new Vector3(0,0,0));
+            systemGroup.AddSystemToUpdateList(moveJobSystem);
+        }   
     }
 }
