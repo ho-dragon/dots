@@ -7,12 +7,9 @@ public class GameController : MonoBehaviour
     public Transform Player;
     public GameObject EnemyPrefab;
     public EnemySpawner Spawner;
-    // Update is called once per frame
-    void Update()
+    
+    public void OnClickSpawnEnemy()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Spawner.Spawn(EnemyPrefab, Player);
-        }
+        Spawner.Spawn(EnemyPrefab, Player);
     }
 }
