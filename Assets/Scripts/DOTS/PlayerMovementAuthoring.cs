@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMovementAuthoring : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity
 {
-    public ParticleSystem particleSystem;
     void IConvertGameObjectToEntity.Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
     {
         dstManager.AddComponentData(entity, new EnemyEntity());

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8134178550452256491}
   - component: {fileID: 1763395610000257949}
   - component: {fileID: 526920570407678163}
-  - component: {fileID: -3428315057243516239}
+  - component: {fileID: -7538024839845513782}
   m_Layer: 0
   m_Name: ParticleTestPrefab
   m_TagString: Untagged
@@ -4755,7 +4755,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &-3428315057243516239
+--- !u!114 &-7538024839845513782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4764,7 +4764,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5504918828263341770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e51a8515cfe08eb44b5241aae1637ccc, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ca82809197bfd84baf85403e341e84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystem: {fileID: 0}

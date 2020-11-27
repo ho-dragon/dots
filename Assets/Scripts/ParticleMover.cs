@@ -34,16 +34,16 @@ public class ParticleMover : MonoBehaviour
             var particleTrans = particle.transform;
             particleTrans.position = spawnPos;
             particleTransformList.Add(particleTrans);
+            particle.GetComponent<ParticleJob>().Init(targetPos);
         }
         totalCount += spawnCount;
         UIEnemyCounter.Instance.UpdateEnemyCounter(totalCount);
     }
-    
-    void Update()
+    /*void Update()
     {
         for (int i = 0; i < particleTransformList.Count; i++)
         {
             particleTransformList[i].transform.position = Vector3.Lerp(particleTransformList[i].transform.position, this.targetPos, Time.deltaTime * 0.1f);
         }
-    }
+    }*/
 }
