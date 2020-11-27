@@ -7,10 +7,14 @@ public class GameController : SingletonMonoBehaviour<GameController>
     public int spawnCount = 1000;
     public Vector2 spawnRadiusMinMax = new Vector2(15f, 60f);
     public Transform playerTransform;
+    public ParticleSystem particleSystem;
+    public ParticleMover particleMover;
+    public bool IsEnableDOTS = false;
     Action<int, Vector2, Vector3> onSpawn;
     ComponentSystemGroup systemGroup;
     EntitySpawnerSystem spawnerSystem;
     MoveJobSystem moveJobSystem;
+    
     void Start()
     {
         systemGroup = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<ComponentSystemGroup>();
@@ -25,13 +29,20 @@ public class GameController : SingletonMonoBehaviour<GameController>
     
     public void OnClickSpawnEnemy()
     {
-        this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax, playerTransform.position);
-        
-        if (moveJobSystem == null)
+        if (IsEnableDOTS)
         {
-            moveJobSystem = World.DefaultGameObjectInjectionWorld.CreateSystem<MoveJobSystem>();
-            moveJobSystem.Init(playerTransform.position);
-            systemGroup.AddSystemToUpdateList(moveJobSystem);
-        }   
+            this.onSpawn?.Invoke(spawnCount, spawnRadiusMinMax, playerTransform.position);
+        
+            if (moveJobSystem == null)
+            {
+                moveJobSystem = World.DefaultGameObjectInjectionWorld.CreateSystem<MoveJobSystem>();
+                moveJobSystem.Init(playerTransform.position);
+                systemGroup.AddSystemToUpdateList(moveJobSystem);
+            }       
+        }
+        else
+        {
+            particleMover.Spawn(spawnCount, spawnRadiusMinMax, playerTransform.position);
+        }
     }
 }

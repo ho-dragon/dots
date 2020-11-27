@@ -31,6 +31,8 @@ public class EntitySpawnerSystem : ComponentSystem
                 float3 spawnPos = dir * randomDistance;
                 quaternion spawnRot = quaternion.LookRotationSafe(math.normalizesafe(-spawnPos), new float3(0f, 1f, 0f));
                 Entity spawnedEntity = EntityManager.Instantiate(prefabEntityComponent.prefabEntity);
+                
+                EntityManager.AddComponentObject(spawnedEntity, ParticleSystem.Instantiate(GameController.Instance.particleSystem));
                 EntityManager.SetComponentData(spawnedEntity,
                     new Translation()
                     {
@@ -47,29 +49,8 @@ public class EntitySpawnerSystem : ComponentSystem
         UIEnemyCounter.Instance.UpdateEnemyCounter(totalCount);
     }
 
-    //float spawnTime;
-
     protected override void OnUpdate()
     {
-        /*spawnTime -= Time.DeltaTime;
-        if (spawnTime <= 0f)
-        {
-            spawnTime = 1f;
-            Entity spawendEntity = EntityManager.Instantiate(PrefabEntities.prefabEntity);
-            EntityManager.SetComponentData(spawendEntity, new Translation()
-            {
-                Value = new float3(random.NextFloat(-5f, 5f), random.NextFloat(-5f, 5f), 0)
-            });
 
-            /*Entities.ForEach((ref PrefabEntityComponent prefabEntityComponent) =>
-            {
-                Entity spawnedEntity = EntityManager.Instantiate(prefabEntityComponent.prefabEntity);
-                EntityManager.SetComponentData(spawnedEntity, 
-                    new Translation()
-                    {
-                        Value = new float3(random.NextFloat(-5f, 5f), random.NextFloat(-5f, 5f), 0)
-                    });
-            });
-        }*/
     }
 }

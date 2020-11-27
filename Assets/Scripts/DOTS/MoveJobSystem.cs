@@ -1,5 +1,4 @@
-﻿using System;
-using Unity.Collections;
+﻿using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -7,7 +6,7 @@ using Unity.Transforms;
 using UnityEngine;
 
 [DisableAutoCreation]
-public class MoveJobSystem : JobComponentSystem
+public class MoveJobSystem : ComponentSystem
 {
     Vector3 targetPosition;
 
@@ -15,24 +14,13 @@ public class MoveJobSystem : JobComponentSystem
     {
         targetPosition = target;
     }
-    
-    struct MoveJob : IJobForEach<EnemyEntity, Translation>
-    {
-        public float3 target;
-        public float speed;
-        public void Execute([ReadOnly] ref EnemyEntity entity, ref Translation translation)
-        {
-            translation.Value = Vector3.Lerp(translation.Value, target, speed);
-        }
-    }
 
-    protected override JobHandle OnUpdate(JobHandle inputDeps)
+    protected override void OnUpdate()
     {
-        var moveJob = new MoveJob
+        Entities.WithAllReadOnly<EnemyEntity>().ForEach((ParticleSystem _particleDust, ref Translation _position) =>
         {
-            target = targetPosition,
-            speed = Time.DeltaTime * 0.1f
-        }.Schedule(this, inputDeps);
-        return moveJob;
+            _position.Value = Vector3.Lerp(_position.Value, targetPosition,  Time.DeltaTime * 0.1f);
+            _particleDust.transform.position = _position.Value;
+        });
     }
 }
