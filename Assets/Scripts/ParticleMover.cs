@@ -30,11 +30,11 @@ public class ParticleMover : MonoBehaviour
             float3 dir = math.mul(quaternion.RotateY(randomAngle), new float3(0, 0, 1));
             float3 spawnPos = dir * randomDistance;
             quaternion spawnRot = quaternion.LookRotationSafe(math.normalizesafe(-spawnPos), new float3(0f, 1f, 0f));
-            var particle = Instantiate(GameController.Instance.particleSystem);
+            var particle = Instantiate(GameController.Instance.particle);
             var particleTrans = particle.transform;
             particleTrans.position = spawnPos;
             particleTransformList.Add(particleTrans);
-            particle.GetComponent<ParticleJob>().Init(targetPos);
+            particle.GetComponent<ParticleJobTest>().Init(targetPos);
         }
         totalCount += spawnCount;
         UIEnemyCounter.Instance.UpdateEnemyCounter(totalCount);

@@ -16,12 +16,12 @@ public class EntitySpawnerSystem : ComponentSystem
     {
         random = new Random();
         random.InitState(10);
-        GameController.Instance.AddEventSpawn(Spawn);
+        GameController.Instance.AddEventSpawn(OnSpawn);
     }
 
-    public void Spawn(int spawnCount, Vector2 spawnRadiusMinMax, Vector3 targetPos)
-    {
-        Entities.ForEach((ref PrefabEntityComponent prefabEntityComponent) =>
+    public void OnSpawn(int spawnCount, Vector2 spawnRadiusMinMax, Vector3 targetPos)
+    {        
+        Entities.ForEach((ref ParticleEntity entity) =>
         {
             for (int i = 0; i < spawnCount; i++)
             {
@@ -30,19 +30,19 @@ public class EntitySpawnerSystem : ComponentSystem
                 float3 dir = math.mul(quaternion.RotateY(randomAngle), new float3(0, 0, 1));
                 float3 spawnPos = dir * randomDistance;
                 quaternion spawnRot = quaternion.LookRotationSafe(math.normalizesafe(-spawnPos), new float3(0f, 1f, 0f));
-                Entity spawnedEntity = EntityManager.Instantiate(prefabEntityComponent.prefabEntity);
+                Entity spawnedEntity = EntityManager.Instantiate(entity.prefabEntity);
                 
-                EntityManager.AddComponentObject(spawnedEntity, ParticleSystem.Instantiate(GameController.Instance.particleSystem));
-                EntityManager.SetComponentData(spawnedEntity,
-                    new Translation()
-                    {
-                        Value = spawnPos
-                    });
-                EntityManager.SetComponentData(spawnedEntity,
-                    new Rotation()
-                    {
-                        Value = spawnRot
-                    });
+                //EntityManager.AddComponentObject(spawnedEntity, ParticleSystem.Instantiate(GameController.Instance.particle));
+                // EntityManager.SetComponentData(spawnedEntity,
+                //     new Translation()
+                //     {
+                //         Value = spawnPos
+                //     });
+                // EntityManager.SetComponentData(spawnedEntity,
+                //     new Rotation()
+                //     {
+                //         Value = spawnRot
+                //     });
             }
         });
         totalCount += spawnCount;

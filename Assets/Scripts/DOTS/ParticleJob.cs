@@ -5,7 +5,7 @@ using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.ParticleSystemJobs;
 
-public class ParticleJob : MonoBehaviour
+public class ParticleJobTest : MonoBehaviour
 {
     private ParticleSystem ps;
     private UpdateParticlesJob job = new UpdateParticlesJob();
